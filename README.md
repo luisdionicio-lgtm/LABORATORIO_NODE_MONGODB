@@ -7,6 +7,7 @@ Aplicación web del Laboratorio 06 para gestionar publicaciones con Node.js, Exp
 - Modelos `User` y `Post` con restricciones de tipo, longitud, obligatoriedad y fechas.
 - Listado de publicaciones de todos los usuarios.
 - Registro, edición y eliminación de publicaciones.
+- Selección de una historia destacada para mostrarla dinámicamente en la portada.
 - Asociación de cada publicación con un usuario de MongoDB.
 - Hashtags, imagen opcional y actualización automática de `updatedAt`.
 - Interfaz responsive con estilos propios.

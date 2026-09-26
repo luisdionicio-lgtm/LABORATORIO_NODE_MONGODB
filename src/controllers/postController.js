@@ -116,6 +116,15 @@ class PostController {
     }
   }
 
+  async feature(req, res) {
+    try {
+      await postService.featurePost(req.params.id);
+      res.redirect("/posts?notice=featured");
+    } catch (error) {
+      res.status(404).render("error", { message: error.message });
+    }
+  }
+
 }
 
 export default new PostController();

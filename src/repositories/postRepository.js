@@ -13,6 +13,23 @@ class PostRepository {
     return await Post.findById(postId).populate("user");
   }
 
+  async findFeatured() {
+    return await Post.findOne({ isFeatured: true }).populate("user");
+  }
+
+  async feature(postId) {
+    await Post.updateMany(
+      { _id: { $ne: postId }, isFeatured: true },
+      { isFeatured: false }
+    );
+
+    return await Post.findByIdAndUpdate(
+      postId,
+      { isFeatured: true, updatedAt: new Date() },
+      { new: true, runValidators: true }
+    );
+  }
+
   async findByUser(userId) {
     return await Post.find({ user: userId }).populate("user");
   }

@@ -62,6 +62,20 @@ class PostService {
     return post;
   }
 
+  async getFeaturedPost() {
+    return await postRepository.findFeatured();
+  }
+
+  async featurePost(postId) {
+    const post = await postRepository.feature(postId);
+
+    if (!post) {
+      throw new Error("Publicación no encontrada");
+    }
+
+    return post;
+  }
+
   async updatePost(postId, postData) {
     const post = await postRepository.update(
       postId,

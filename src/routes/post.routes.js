@@ -16,6 +16,7 @@ router.get("/new", postController.showCreate);
 router.post("/", postController.create);
 router.get("/:id/edit", postController.showEdit);
 router.post("/:id/edit", postController.update);
+router.post("/:id/feature", postController.feature);
 router.post("/:id/delete", postController.delete);
 
 
