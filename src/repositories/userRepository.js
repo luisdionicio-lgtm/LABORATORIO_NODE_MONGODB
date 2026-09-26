@@ -16,6 +16,20 @@ class UserRepository {
   async findByEmail(email) {
     return await User.findOne({ email });
   }
+
+  async update(userId, userData) {
+    return await User.findByIdAndUpdate(
+      userId,
+      {
+        ...userData,
+        updatedAt: new Date()
+      },
+      {
+        new: true,
+        runValidators: true
+      }
+    );
+  }
 }
 
 export default new UserRepository();

@@ -29,6 +29,27 @@ class UserController {
       });
     }
   }
+
+  async showEdit(req, res) {
+    try {
+      const user = await userService.getUserById(req.params.id);
+      res.render("user-edit", { user, error: "" });
+    } catch (error) {
+      res.status(404).render("error", { message: error.message });
+    }
+  }
+
+  async update(req, res) {
+    try {
+      await userService.updateUser(req.params.id, req.body);
+      res.redirect("/users?notice=updated");
+    } catch (error) {
+      res.status(400).render("user-edit", {
+        user: { _id: req.params.id, ...req.body },
+        error: error.message
+      });
+    }
+  }
 }
 
 export default new UserController();

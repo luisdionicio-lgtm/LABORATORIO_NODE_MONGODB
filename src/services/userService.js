@@ -26,6 +26,46 @@ class UserService {
 
     return await userRepository.create(normalizedData);
   }
+
+  async getUserById(userId) {
+    const user = await userRepository.findById(userId);
+
+    if (!user) {
+      throw new Error("Usuario no encontrado");
+    }
+
+    return user;
+  }
+
+  async updateUser(userId, userData) {
+    const currentUser = await this.getUserById(userId);
+    const email = String(userData.email || "").trim().toLowerCase();
+    const userWithEmail = await userRepository.findByEmail(email);
+
+    if (userWithEmail && String(userWithEmail._id) !== String(userId)) {
+      throw new Error("Ya existe otro usuario registrado con este correo.");
+    }
+
+    const updateData = {
+      name: String(userData.name || "").trim(),
+      lastName: String(userData.lastName || "").trim(),
+      email,
+      age: Number(userData.age),
+      phoneNumber: String(userData.phoneNumber || "").trim()
+    };
+
+    if (userData.password) {
+      updateData.password = String(userData.password);
+    }
+
+    const updatedUser = await userRepository.update(currentUser._id, updateData);
+
+    if (!updatedUser) {
+      throw new Error("Usuario no encontrado");
+    }
+
+    return updatedUser;
+  }
 }
 
 export default new UserService();

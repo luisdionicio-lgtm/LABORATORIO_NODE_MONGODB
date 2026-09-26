@@ -16,13 +16,13 @@
       <p>Registra un nuevo perfil para publicar historias y formar parte de la comunidad.</p>
     </section>
 
-    <% if(notice === 'created'){ %><div class="toast reveal" role="status"><i>✓</i><span><strong>Usuario registrado</strong>El nuevo perfil ya puede crear publicaciones.</span></div><% } %>
+    <% if(notice === 'created'){ %><div class="toast reveal" role="status"><i>✓</i><span><strong>Usuario registrado</strong>El nuevo perfil ya puede crear publicaciones.</span></div><% } %><% if(notice === 'updated'){ %><div class="toast reveal" role="status"><i>✓</i><span><strong>Usuario actualizado</strong>La fecha de actualización se renovó correctamente.</span></div><% } %>
 
     <section class="users-layout">
       <div class="user-list reveal">
         <div class="section-label"><span>COMUNIDAD</span><b>PERFILES ACTIVOS</b></div>
         <% if(!users.length){ %><div class="users-empty"><span>＋</span><h2>Aún no hay usuarios</h2><p>Completa el formulario para crear el primer perfil.</p></div><% } %>
-        <% users.forEach((user,index)=>{ %><article class="user-card"><div class="user-avatar"><span><%= user.name.charAt(0) %><%= user.lastName.charAt(0) %></span><i></i></div><div class="user-info"><small>USUARIO <%= String(index+1).padStart(2,'0') %></small><h2><%= user.name %> <%= user.lastName %></h2><p><%= user.email %></p><div><span><b><%= user.age %></b> años</span><span><b><%= user.phoneNumber || '—' %></b> teléfono</span></div></div><span class="user-status">ACTIVO</span></article><% }) %>
+        <% users.forEach((user,index)=>{ %><article class="user-card"><div class="user-avatar"><span><%= user.name.charAt(0) %><%= user.lastName.charAt(0) %></span><i></i></div><div class="user-info"><small>USUARIO <%= String(index+1).padStart(2,'0') %></small><h2><%= user.name %> <%= user.lastName %></h2><p><%= user.email %></p><div><span><b><%= user.age %></b> años</span><span><b><%= user.phoneNumber || '—' %></b> teléfono</span></div></div><a class="user-edit" href="/users/<%= user._id %>/edit" aria-label="Editar <%= user.name %>">EDITAR ↗</a><span class="user-status">ACTIVO</span></article><% }) %>
       </div>
 
       <div class="user-create reveal">

@@ -10,6 +10,7 @@ Aplicación web del Laboratorio 06 para gestionar publicaciones con Node.js, Exp
 - Selección de una historia destacada para mostrarla dinámicamente en la portada.
 - Asociación de cada publicación con un usuario de MongoDB.
 - Registro y listado de usuarios desde la interfaz web.
+- Edición de usuarios con conservación de `createdAt` y actualización automática de `updatedAt`.
 - Hashtags, imagen opcional y actualización automática de `updatedAt`.
 - Interfaz responsive con estilos propios.
 
