@@ -40,8 +40,7 @@ const postSchema = new mongoose.Schema({
   },
 
   updatedAt: {
-    type: Date,
-    default: Date.now
+    type: Date
   }
 });
 
