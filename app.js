@@ -17,6 +17,9 @@ import homeRoutes
 import postRoutes
   from "./src/routes/post.routes.js";
 
+import userRoutes
+  from "./src/routes/user.routes.js";
+
 
 dotenv.config();
 
@@ -88,6 +91,11 @@ app.use(
 app.use(
   "/posts",
   postRoutes
+);
+
+app.use(
+  "/users",
+  userRoutes
 );
 
 
